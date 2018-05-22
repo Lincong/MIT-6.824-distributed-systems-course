@@ -3,6 +3,8 @@ package mapreduce
 import (
 	"fmt"
 	"strconv"
+	"os"
+	"log"
 )
 
 // Debugging enabled?
@@ -22,6 +24,11 @@ type jobPhase string
 const (
 	mapPhase    jobPhase = "mapPhase"
 	reducePhase          = "reducePhase"
+)
+
+var (
+	outfile, _ = os.Create("./logs/my.log")
+	logger = log.New(outfile, "", 0)
 )
 
 // KeyValue is a type used to hold the key/value pairs passed to the map and
